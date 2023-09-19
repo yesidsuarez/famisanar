@@ -12,28 +12,29 @@ import co.com.famisanar.entities.service.LibBooksService;
 import co.com.famisanar.entity.LibBooks;
 
 @Service
-public class LibBooksServiceImpl implements LibBooksService{
+public class LibBooksServiceImpl implements LibBooksService {
 
 	@Autowired
 	private LibBooksRepository libBooksRepository;
-	
+
 	@Override
 	public List<LibBooksDto> searchLibBooks(String category) {
-		List<LibBooks> books = libBooksRepository.getLibBooksByCategory(category); 
+		List<LibBooks> books = libBooksRepository.getLibBooksByCategory(category);
 		List<LibBooksDto> foundBooks = new ArrayList<>();
-		
+
 		for (LibBooks libBooks : books) {
 			LibBooksDto libBooksDto = new LibBooksDto();
 			libBooksDto.setTitle(libBooks.getBookTitle());
-			libBooksDto.setAuthor(libBooks.getLibAuthors().getAutFirstName() + libBooks.getLibAuthors().getAutLastName());
+			libBooksDto
+					.setAuthor(libBooks.getLibAuthors().getAutFirstName() + libBooks.getLibAuthors().getAutLastName());
 			libBooksDto.setIsbn(libBooks.getBookIsbn());
 			libBooksDto.setPrice(libBooks.getBookPrice());
 			libBooksDto.setCategory(libBooks.getLibBookCategories().getCatDescripcion());
 			libBooksDto.setDescription(libBooks.getBookDescripcion());
-			
+
 			foundBooks.add(libBooksDto);
 		}
-		
+
 		return foundBooks;
 	}
 

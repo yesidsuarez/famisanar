@@ -12,15 +12,9 @@ import co.com.famisanar.entity.LibBooks;
 @Repository
 public interface LibBooksRepository extends CrudRepository<LibBooks, Integer> {
 
-	@Query("SELECT b.bookTitle, "
-			+ "b.libAuthors.autFirstName, "
-			+ "b.libAuthors.autLasttName, "
-			+ "b.bookIsbn, "
-			+ "b.bookPrice, "
-			+ "b.libBookCategories.catDescripcion, "
-			+ "b.bookDescripcion"
+	@Query("SELECT b "
 			+ "FROM LibBooks b "
-			+ "WHERE b.libBookCategories.catDescripcion = :category")
+			+ "WHERE b.libBookCategories.catDescripcion = :category "
+			+ "ORDER BY b.libAuthors.autId DESC, b.bookTitle ASC")
 	List<LibBooks> getLibBooksByCategory(@Param("category") String category);
-	//ordenados por autor y titulo.
 }

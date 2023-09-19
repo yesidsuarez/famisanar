@@ -3,15 +3,17 @@ package co.com.famisanar.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity(name = "LIB_BOOK_CATEGORIES")
+@Entity
+@Table(name = "LIB_BOOK_CATEGORIES")
 public class LibBookCategories {
-	
+
 	@Id
 	@Column(name = "CAT_ID")
 	private Integer catId;
-	
-	@Column(name = "CAT_DESCRIPCIÓN")
+
+	@Column(name = "CAT_DESCRIPCION")
 	private String catDescripcion;
 
 	public Integer getCatId() {
@@ -29,6 +31,5 @@ public class LibBookCategories {
 	public void setCatDescripcion(String catDescripcion) {
 		this.catDescripcion = catDescripcion;
 	}
-	
-	
+
 }

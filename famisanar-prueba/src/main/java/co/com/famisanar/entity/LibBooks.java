@@ -1,6 +1,5 @@
 package co.com.famisanar.entity;
 
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -9,46 +8,48 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-@Entity(name = "LIB_BOOKS")
+@Entity
+@Table(name = "LIB_BOOKS")
 public class LibBooks {
-	
+
 	@Id
 	@Column(name = "BOOK_ID")
 	private Integer bookId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "BOOK_AUT_ID")
 	private LibAuthors libAuthors;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "BOOK_CAT_ID")
 	private LibBookCategories libBookCategories;
-	
+
 	@Column(name = "BOOK_ISBN")
 	private String bookIsbn;
-	
+
 	@Column(name = "BOOK_PUBLISHED_DATE")
 	private LocalDate bookPublishedDate;
-	
+
 	@Column(name = "BOOK_TITLE")
 	private String bookTitle;
-	
+
 	@Column(name = "BOOK_PRICE")
 	private Double bookPrice;
-	
-	@Column(name = "BOOK_DESCRIPCIÓN")
+
+	@Column(name = "BOOK_DESCRIPCION")
 	private String bookDescripcion;
-	
+
 	@Column(name = "BOOK_IMAGE")
 	private byte[] bookImage;
-	
+
 	@Column(name = "BOOK_MIMETYPE")
 	private String bookMimetype;
-	
+
 	@Column(name = "BOOK_FILENAME")
 	private String bookFilename;
-	
+
 	@Column(name = "BOOK_IMAGE_LAST_UPDATE")
 	private LocalDateTime bookImageLastUpdate;
 
@@ -146,5 +147,5 @@ public class LibBooks {
 
 	public void setBookImageLastUpdate(LocalDateTime bookImageLastUpdate) {
 		this.bookImageLastUpdate = bookImageLastUpdate;
-	}	
+	}
 }

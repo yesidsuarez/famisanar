@@ -1,34 +1,35 @@
 package co.com.famisanar.entity;
 
-
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity(name = "LIB_AUTHORS")
+@Entity
+@Table(name = "LIB_AUTHORS")
 public class LibAuthors {
-	
+
 	@Id
 	@Column(name = "AUT_ID")
 	private Integer autId;
-	
+
 	@Column(name = "AUT_FIRST_NAME")
 	private String autFirstName;
-	
+
 	@Column(name = "AUT_LAST_NAME")
 	private String autLastName;
-	
+
 	@Column(name = "AUT_DATE_DOB")
 	private LocalDate autDateDob;
-	
+
 	@Column(name = "AUT_GENDER")
 	private String autGender;
-	
+
 	@Column(name = "AUT_CONTACT")
 	private String autContact;
-	
+
 	@Column(name = "AUT_OTHER_DETAILS")
 	private String autOtherDetails;
 
@@ -87,6 +88,5 @@ public class LibAuthors {
 	public void setAutOtherDetails(String autOtherDetails) {
 		this.autOtherDetails = autOtherDetails;
 	}
-
 
 }

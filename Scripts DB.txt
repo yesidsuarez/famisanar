@@ -1,0 +1,48 @@
+create table LIB_AUTHORS(
+       AUT_ID NUMERIC (8) not null PRIMARY KEY,
+       AUT_FIRST_NAME VARCHAR (30)  not null,
+       AUT_LAST_NAME VARCHAR (30) not null,
+       AUT_DATE_DOB Date not null,
+       AUT_GENDER VARCHAR (1) not null,
+       AUT_CONTACT VARCHAR (30) not null,
+       AUT_OTHER_DETAILS VARCHAR (200)  not null
+);
+
+create table LIB_BOOK_CATEGORIES(
+       CAT_ID NUMERIC (8) not null PRIMARY KEY,
+       CAT_DESCRIPCION VARCHAR (60)  not null        
+);
+
+create table LIB_BOOKS(
+       BOOK_ID NUMERIC (8) not null PRIMARY KEY,
+       BOOK_AUT_ID NUMERIC (8)  not null,
+       BOOK_CAT_ID NUMERIC (8) not null,
+       BOOK_ISBN VARCHAR (15) not null,
+       BOOK_PUBLISHED_DATE Date not null,
+       BOOK_TITLE VARCHAR (100) not null,
+       BOOK_PRICE NUMERIC (8,2) not null,
+       BOOK_DESCRIPCION VARCHAR (200) not null,
+       BOOK_IMAGE BYTEA not null,
+       BOOK_MIMETYPE VARCHAR (200) not null,
+       BOOK_FILENAME VARCHAR (200) not null,	
+       BOOK_IMAGE_LAST_UPDATE TIMESTAMP(6) WITH TIME ZONE not null,	 
+
+       FOREIGN KEY (BOOK_AUT_ID) REFERENCES LIB_AUTHORS(AUT_ID),
+       FOREIGN KEY (BOOK_CAT_ID) REFERENCES LIB_BOOK_CATEGORIES(CAT_ID)
+);
+
+
+insert into LIB_BOOK_CATEGORIES (CAT_ID, CAT_DESCRIPCION) values (001,'Educativa');
+insert into LIB_BOOK_CATEGORIES (CAT_ID, CAT_DESCRIPCION) values (002,'Seducción');
+insert into LIB_BOOK_CATEGORIES (CAT_ID, CAT_DESCRIPCION) values (003,'Crecimiento personal');
+insert into LIB_BOOK_CATEGORIES (CAT_ID, CAT_DESCRIPCION) values (004,'Educacion Financiera');
+
+insert into LIB_AUTHORS (AUT_ID, AUT_FIRST_NAME, AUT_LAST_NAME, AUT_DATE_DOB, AUT_GENDER, AUT_CONTACT, AUT_OTHER_DETAILS) values (1,'Wilmer Yesid','Suarez Morales', '01-12-1988', 'M', '3046604044', 'GENERO HISTORICO');
+insert into LIB_AUTHORS (AUT_ID, AUT_FIRST_NAME, AUT_LAST_NAME, AUT_DATE_DOB, AUT_GENDER, AUT_CONTACT, AUT_OTHER_DETAILS) values (2,'Jhon Alexis','Martinez Soza', '12-10-1989', 'M', '3123378912', 'GENERO ROMANTICO');
+insert into LIB_AUTHORS (AUT_ID, AUT_FIRST_NAME, AUT_LAST_NAME, AUT_DATE_DOB, AUT_GENDER, AUT_CONTACT, AUT_OTHER_DETAILS) values (3,'Ana Maria','Galindo Perez', '24-09-1990', 'F', '3147852396', 'GENERO DRAMATICO');
+insert into LIB_AUTHORS (AUT_ID, AUT_FIRST_NAME, AUT_LAST_NAME, AUT_DATE_DOB, AUT_GENDER, AUT_CONTACT, AUT_OTHER_DETAILS) values (4,'Andres Mauricio','Perez Ramirez', '25-07-1991', 'M', '3139874562', 'GENERO LITERARIO');
+insert into LIB_AUTHORS (AUT_ID, AUT_FIRST_NAME, AUT_LAST_NAME, AUT_DATE_DOB, AUT_GENDER, AUT_CONTACT, AUT_OTHER_DETAILS) values (5,'Camilo Andres','Parrado Garcia', '29-05-1992', 'M', '3078945615', 'GENERO COMICO');
+
+INSERT INTO public.lib_books(
+	book_id, book_aut_id, book_cat_id, book_isbn, book_published_date, book_title, book_price, book_descripcion, book_image, book_mimetype, book_filename, book_image_last_update)
+	VALUES (111,     1,           001,         'QWERTY',  '2022-12-05',        'la divina comedia', 20,000, 'libro del mes', 'educativo', 'arte', '01-06-2000');
